@@ -115,7 +115,7 @@ export default function Hero() {
           </motion.div>
 
           <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl md:text-6xl xl:text-7xl leading-[1.08] sm:leading-[1.05]">
-            {["Grow NOW Faster with", "Creative Social"].map((line, i) => (
+            {["Grow Faster with", "Creative Social"].map((line, i) => (
               <span key={line} className="block overflow-hidden">
                 <motion.span
                   initial={{ y: "110%" }}
