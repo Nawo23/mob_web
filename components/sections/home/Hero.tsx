@@ -74,13 +74,13 @@ export default function Hero() {
     <section
       ref={sectionRef}
       onPointerMove={handlePointerMove}
-      className="relative min-h-screen flex flex-col justify-center pt-18 pb-20 sm:pt-10 sm:pb-20 lg:pt-12 lg:pb-24 overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center pt-8 pb-14 sm:pt-10 sm:pb-20 lg:pt-12 lg:pb-24 overflow-hidden"
     >
       {/* Ambient aurora + spotlight background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-[400px] w-[600px] sm:h-[680px] sm:w-[980px] rounded-full bg-gradient-to-br from-mc-red/25 via-mc-red/8 to-transparent blur-[110px] animate-aurora" />
-        <div className="absolute top-1/4 -right-24 h-60 w-60 sm:h-96 sm:w-96 rounded-full bg-mc-red/15 blur-[100px] animate-aurora-slow" />
-        <div className="absolute bottom-0 left-[-6%] h-48 w-48 sm:h-72 sm:w-72 rounded-full bg-mc-ink/10 blur-[90px] animate-aurora" />
+        <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-[300px] w-[400px] sm:h-[680px] sm:w-[980px] rounded-full bg-gradient-to-br from-mc-red/25 via-mc-red/8 to-transparent blur-[110px] animate-aurora" />
+        <div className="absolute top-1/4 -right-24 h-40 w-40 sm:h-96 sm:w-96 rounded-full bg-mc-red/15 blur-[100px] animate-aurora-slow" />
+        <div className="absolute bottom-0 left-[-6%] h-32 w-32 sm:h-72 sm:w-72 rounded-full bg-mc-ink/10 blur-[90px] animate-aurora" />
 
         <motion.div
           className="absolute inset-0 opacity-70 mix-blend-multiply"
@@ -98,23 +98,23 @@ export default function Hero() {
         />
       </div>
 
-      <div className="container-mc grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+      <div className="container-mc grid lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-14 items-center">
         {/* ---------- Left: copy ---------- */}
         <div className="lg:col-span-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 rounded-full glass px-3.5 py-2 text-[11px] sm:text-xs font-semibold text-mc-ink mb-6 sm:mb-8 shadow-sm"
+            className="inline-flex items-center gap-2 rounded-full glass px-3 sm:px-3.5 py-1.5 sm:py-2 text-[10px] sm:text-xs font-semibold text-mc-ink mb-5 sm:mb-8 shadow-sm max-w-full"
           >
             <span className="relative flex h-2 w-2 shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-mc-red opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-mc-red" />
             </span>
-            Now booking Q3 2026 growth partners
+            <span className="truncate">Now booking Q3 2026 growth partners</span>
           </motion.div>
 
-          <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl md:text-6xl xl:text-7xl leading-[1.08] sm:leading-[1.05]">
+          <h1 className="font-display font-semibold tracking-tight text-[2.25rem] sm:text-5xl md:text-6xl xl:text-7xl leading-[1.1] sm:leading-[1.05]">
             {["Grow Faster with", "Creative Social"].map((line, i) => (
               <span key={line} className="block overflow-hidden">
                 <motion.span
@@ -143,7 +143,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.55 }}
-            className="mt-5 sm:mt-7 text-base sm:text-lg text-mc-gray-600 leading-relaxed max-w-lg"
+            className="mt-4 sm:mt-7 text-[15px] sm:text-lg text-mc-gray-600 leading-relaxed max-w-lg"
           >
             MetaCraze is the strategy, content and performance-media team behind brands that turn
             attention into revenue — built for businesses ready to grow in public.
@@ -153,7 +153,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-            className="mt-8 sm:mt-10 flex flex-wrap items-center gap-3 sm:gap-4"
+            className="mt-6 sm:mt-10 flex flex-wrap items-center gap-3 sm:gap-4"
           >
             <motion.div whileHover={{ y: -3 }} whileTap={{ scale: 0.97 }} className="relative">
               <Button
@@ -179,27 +179,27 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.9 }}
-            className="mt-10 sm:mt-14 flex items-center gap-5 sm:gap-8"
+            className="mt-8 sm:mt-14 flex items-center gap-4 sm:gap-8"
           >
             <div>
-              <p className="font-display text-2xl sm:text-3xl font-semibold">
+              <p className="font-display text-xl sm:text-3xl font-semibold">
                 <CountUp end={140} duration={2} />+
               </p>
-              <p className="text-[11px] sm:text-xs text-mc-gray-600 mt-1">Brands grown</p>
+              <p className="text-[10px] sm:text-xs text-mc-gray-600 mt-1">Brands grown</p>
             </div>
-            <div className="h-9 sm:h-10 w-px bg-mc-gray-200 shrink-0" />
+            <div className="h-8 sm:h-10 w-px bg-mc-gray-200 shrink-0" />
             <div>
-              <p className="font-display text-2xl sm:text-3xl font-semibold">
+              <p className="font-display text-xl sm:text-3xl font-semibold">
                 <CountUp end={280} duration={2} />%
               </p>
-              <p className="text-[11px] sm:text-xs text-mc-gray-600 mt-1">Avg. follower growth</p>
+              <p className="text-[10px] sm:text-xs text-mc-gray-600 mt-1">Avg. follower growth</p>
             </div>
-            <div className="h-9 sm:h-10 w-px bg-mc-gray-200 shrink-0" />
+            <div className="h-8 sm:h-10 w-px bg-mc-gray-200 shrink-0" />
             <div>
-              <p className="font-display text-2xl sm:text-3xl font-semibold">
+              <p className="font-display text-xl sm:text-3xl font-semibold">
                 <CountUp end={4.9} decimals={1} duration={2} />★
               </p>
-              <p className="text-[11px] sm:text-xs text-mc-gray-600 mt-1">Client rating</p>
+              <p className="text-[10px] sm:text-xs text-mc-gray-600 mt-1">Client rating</p>
             </div>
           </motion.div>
 
@@ -208,13 +208,13 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.05 }}
-            className="mt-10 sm:mt-12 relative w-full max-w-lg overflow-hidden rounded-full border border-mc-gray-200 bg-mc-gray-50/80 py-2.5"
+            className="mt-8 sm:mt-12 relative w-full max-w-lg overflow-hidden rounded-full border border-mc-gray-200 bg-mc-gray-50/80 py-2 sm:py-2.5"
             style={{ maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)" }}
           >
-            <div className="flex w-max gap-6 sm:gap-8 animate-marquee" style={{ animationDuration: "22s" }}>
+            <div className="flex w-max gap-5 sm:gap-8 animate-marquee" style={{ animationDuration: "22s" }}>
               {[...marqueeItems, ...marqueeItems].map(({ label, Icon }, i) => (
-                <span key={i} className="flex items-center gap-2 text-[11px] sm:text-xs font-semibold text-mc-gray-600 whitespace-nowrap">
-                  <Icon className="h-3.5 w-3.5 text-mc-red shrink-0" />
+                <span key={i} className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-semibold text-mc-gray-600 whitespace-nowrap">
+                  <Icon className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-mc-red shrink-0" />
                   {label}
                 </span>
               ))}
