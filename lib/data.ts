@@ -542,7 +542,7 @@ export const FAQS = [
 export const PRICING = [
   {
     id: "platinum",
-    name: "Platinum Package",
+    name: "Platinum Package1",
     price: "96,000 LKR",
     period: "/month",
     featured: false,
