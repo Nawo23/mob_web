@@ -140,7 +140,7 @@ export default function PricingPreview() {
           className="mx-auto"
         />
 
-        <div className="grid lg:grid-cols-3 gap-6 mt-16 items-stretch relative z-[50]">
+        <div className="grid lg:grid-cols-3 gap-6 mt-16 items-stretch">
           {PRICING.map((plan) => (
             <Reveal key={plan.id} direction="up" delay={0.1}>
               <div
