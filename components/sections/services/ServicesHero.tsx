@@ -27,8 +27,7 @@ export default function ServicesHero() {
         </Reveal>
         <Reveal direction="up" delay={0.16}>
           <p className="mt-7 text-white/60 text-lg max-w-xl">
-            {SERVICES.length} specialised services working as one system — strategy, content and paid
-            media that compound instead of competing for credit.
+            At Metaa Craze Productions (Pvt) Ltd, we help businesses build a strong and professional digital presence through strategic social media management and creative content production. We create engaging content, manage social media platforms, and develop marketing strategies that help brands increase visibility, audience engagement, and business growth. 
           </p>
         </Reveal>
 

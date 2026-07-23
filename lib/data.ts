@@ -58,17 +58,17 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "meta-marketing",
-    title: "Facebook & Instagram Marketing",
-    short: "Paid + organic growth across the Meta ecosystem.",
+    title: "Facebook, Instagram & TikTok Management",
+    short: "Content, posting & growth for your social media.",
     description:
-      "From reels that stop the scroll to conversion-optimised ad funnels, we turn Meta's platforms into a predictable growth channel for your business.",
+      "Manage your Facebook, Instagram, and TikTok accounts with engaging content, consistent posting, and audience growth.",
     icon: Instagram,
     features: ["Reels & carousels", "Meta Ads funnels", "Audience targeting", "Pixel & CAPI setup"],
     image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=1200&q=80",
   },
   {
-    slug: "tiktok-marketing",
-    title: "TikTok Marketing",
+    slug: "create videos",
+    title: "Short Video & Production (Reels/TikTok videos)",
     short: "Trend-native content built for discovery.",
     description:
       "We script, shoot and edit short-form content designed for the For You Page — then back the winners with paid spend to compound reach.",
@@ -78,7 +78,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "content-creation",
-    title: "Content Creation",
+    title: "Content Planning & Scheduling",
     short: "Photo, video and copy that actually converts.",
     description:
       "A full in-house creative pod — photographers, editors and copywriters — producing scroll-stopping assets tailored to each platform's format.",
@@ -88,7 +88,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "graphic-design",
-    title: "Graphic Design",
+    title: "Graphic Design & Creative Content",
     short: "Visual systems that scale across every touchpoint.",
     description:
       "From feed grids to pitch decks, our design team builds flexible visual systems so your brand looks premium everywhere it appears.",
@@ -98,7 +98,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "brand-identity",
-    title: "Brand Identity",
+    title: "Brand Growth strategy",
     short: "Positioning, voice and visual identity from zero.",
     description:
       "We define who you are before we define how you look — strategy-first branding that gives every future campaign a clear north star.",
@@ -108,7 +108,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "digital-advertising",
-    title: "Digital Advertising",
+    title: "Paid Advertising & boosting Support",
     short: "Paid media engineered around ROAS, not vanity metrics.",
     description:
       "We plan, launch and optimise paid campaigns across every major platform with a single goal — a return on ad spend you can defend in a boardroom.",
@@ -118,8 +118,8 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "seo-google-ads",
-    title: "SEO & Google Ads",
-    short: "Own the search results your customers are already typing.",
+    title: "Caption writing & SEO Optimization",
+    short: "Engaging captions with SEO-driven optimization.",
     description:
       "Technical SEO, content strategy and Google Ads working together so you're found at every stage of the buying journey.",
     icon: Search,
@@ -127,23 +127,23 @@ export const SERVICES: Service[] = [
     image: "https://images.unsplash.com/photo-1571677246347-5040036b95cc?w=1200&q=80",
   },
   {
-    slug: "web-development",
-    title: "Website Development",
-    short: "Fast, conversion-focused sites built to sell.",
+    slug: "market-research",
+    title: "Market Research & Competitor Analysis",
+    short: "Know your market. Beat the competition.",
     description:
-      "Modern, high-performance websites — from landing pages to full e-commerce builds — designed to turn traffic your campaigns generate into revenue.",
+      "Gain valuable market insights, track competitors, and identify opportunities to create smarter marketing strategies and drive business growth.",
     icon: Globe,
-    features: ["Landing pages", "E-commerce builds", "CRO & analytics", "Ongoing maintenance"],
+    features: ["Market insights","Competitor tracking","Trend analysis","Growth opportunities",],
     image: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=1200&q=80",
   },
   {
-    slug: "analytics-strategy",
-    title: "Analytics & Strategy Consulting",
-    short: "The numbers behind every creative decision.",
+    slug: "reporting-analytics",
+    title: "Monthly Performance Reporting",
+    short: "Clear reports that measure your growth.",
     description:
-      "Dashboards, attribution and quarterly strategy sessions so growth isn't a guess — it's a system you can see and steer.",
+      "Receive detailed monthly reports with key metrics, audience insights, and performance recommendations to keep your marketing on track.",
     icon: BarChart3,
-    features: ["Custom dashboards", "Attribution modelling", "Quarterly strategy", "Competitor analysis"],
+    features: ["Monthly reports","Performance insights","Growth tracking","Actionable recommendations"],
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
   },
 ];
@@ -541,40 +541,121 @@ export const FAQS = [
 
 export const PRICING = [
   {
-    name: "Growth",
-    price: "$1,200",
+    id: "platinum",
+    name: "Platinum Package",
+    price: "96,000 LKR",
     period: "/month",
-    description: "For brands starting to take social seriously.",
-    features: ["2 platforms managed", "12 posts / month", "Monthly strategy call", "Performance report"],
     featured: false,
+    description: "Designed for businesses that want maximun brand growth, high engagement and a powerful digital presence.",
+    featureGroups: [
+      {
+        title: "Content Creation",
+        items: [
+          "8 relevant and engaging posts",
+          "8 relevant engaging short videos/reels",
+          "1 special day post",
+          "1 professional cover photo",
+          "Professional graphics and creative captions included",
+          "Content optimized for Facebook, Instagram & TikTok",
+        ],
+      },
+      {
+        title: "Advertising & Growth",
+        items: [
+          "Unlimited boosting support",
+          "Campaign setup, management & optimization",
+          "Facebook, Instagram & TikTok page growth",
+          "Social media marketing strategy & content planning",
+          "Market research & audience targeting",
+        ],
+      },
+      {
+        title: "Analysis & Optimization",
+        items: [
+          "Social media competitor analysis",
+          "Monthly reporting & performance analysis",
+          "Page growth report",
+          "Cover photo & page optimization",
+          "SEO-optimized captions & content strategy",
+        ],
+      },
+    ],
   },
   {
-    name: "Momentum",
-    price: "$2,800",
+    id: "gold",
+    name: "Gold Package",
+    price: "75,000 LKR",
     period: "/month",
-    description: "Our most popular tier for scaling brands.",
-    features: [
-      "4 platforms managed",
-      "24 posts + 8 reels / month",
-      "Paid media management",
-      "Bi-weekly strategy calls",
-      "Dedicated content pod",
-    ],
     featured: true,
+    description: "Ideal for growing brands that need more engaging content and stronger audience interaction.",
+    featureGroups: [
+      {
+        title: "Content Creation",
+        items: [
+          "06 relevant and engaging posts",
+          "06 engaging Short Videos/Reels",
+          "01 Special Day Post",
+          "01 Professional Cover Photo",
+          "Professional graphics and creative captions included",
+          "Content optimized for Facebook, Instagram & TikTok",
+        ],
+      },
+      {
+        title: "Advertising & Growth",
+        items: [
+          "Unlimited boosting support",
+          "Campaign setup, management & optimization",
+          "Facebook, Instagram & TikTok page growth",
+          "Social media marketing strategy & content planning",
+          "Market research & audience targeting",
+        ],
+      },
+      {
+        title: "Analysis & Optimization",
+        items: [
+          "Social media competitor analysis",
+          "Cover photo & page optimization",
+          "SEO-optimized captions & content strategy",
+        ],
+      },
+    ],
   },
   {
-    name: "Dominate",
-    price: "Custom",
-    period: "",
-    description: "Full-scale growth engine for established brands.",
-    features: [
-      "Unlimited platforms",
-      "Daily content production",
-      "Full paid media suite",
-      "Weekly strategy calls",
-      "Dedicated account director",
-    ],
+    id: "silver",
+    name: "SILVER PACKAGE",
+    price: "55,000 LKR",
+    period: "/month",
+    description: "Perfect for small businesses looking to build a professional and consistent social media presence.",
     featured: false,
+    featureGroups: [
+      {
+        title: "Content Creation",
+        items: [
+          "04 relevant and engaging posts",
+          "04 engaging Short Videos/Reels",
+          "01 Special Day Post",
+          "01 Professional Cover Photo",
+          "Professional graphics and creative captions included",
+          "Content optimized for Facebook, Instagram & TikTok",
+        ],
+      },
+      {
+        title: "Advertising & Growth",
+        items: [
+          "Unlimited boosting support",
+          "Campaign setup, management & optimization",
+          "Facebook, Instagram & TikTok page growth",
+        ],
+      },
+      {
+        title: "Analysis & Optimization",
+        items: [
+          "Social media competitor analysis",
+          "Cover photo & page optimization",
+          "SEO-optimized captions & content strategy",
+        ],
+      },
+    ],
   },
 ];
 

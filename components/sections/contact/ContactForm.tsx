@@ -13,7 +13,7 @@ export default function ContactForm() {
     return (
       <section className="pb-8 lg:pb-12 ">
         <div className="container-mc">
-          <div className="mx-auto max-w-3xl rounded-3xl border border-mc-gray-200 p-10 text-center">
+          <div className="mx-auto max-w-3xl rounded-3xl bg-white shadow-[0_20px_60px_-12px_rgba(0,0,0,0.3)] p-10 text-center">
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
@@ -38,7 +38,7 @@ export default function ContactForm() {
             e.preventDefault();
             setSubmitted(true);
           }}
-          className=" rounded-3xl border border-mc-gray-200 p-7 sm:p-9 space-y-5"
+          className="rounded-3xl bg-white shadow-[0_20px_60px_-12px_rgba(0,0,0,0.3)] p-7 sm:p-9 space-y-5"
         >
           <div className="grid sm:grid-cols-2 gap-6">
   <Field label="Full name" name="name" placeholder="Jane Cooper" required />
@@ -68,7 +68,7 @@ export default function ContactForm() {
   required
   rows={8}
   placeholder="What are you looking to grow, and by when?"
-  className="w-full rounded-2xl border border-mc-gray-200 px-4 py-3.5 text-sm outline-none focus:border-mc-red transition-colors resize-none"
+  className="w-full rounded-2xl bg-white shadow-[0_8px_25px_-6px_rgba(0,0,0,0.2)] px-4 py-3.5 text-sm outline-none focus:ring-2 focus:ring-mc-red/30 transition-shadow resize-none"
 />
           </div>
 
@@ -109,7 +109,7 @@ function Field({
         type={type}
         required={required}
         placeholder={placeholder}
-        className="w-full rounded-2xl border border-mc-gray-200 px-4 py-3 text-sm outline-none focus:border-mc-red transition-colors"
+        className="w-full rounded-2xl bg-white shadow-[0_8px_25px_-6px_rgba(0,0,0,0.2)] px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-mc-red/30 transition-shadow"
       />
     </div>
   );
@@ -121,8 +121,8 @@ function BudgetPill({ label }: { label: string }) {
     <button
       type="button"
       onClick={() => setSelected((v) => !v)}
-      className={`rounded-full px-4 py-2 text-xs font-medium border transition-colors ${
-        selected ? "bg-mc-red text-white border-mc-red" : "border-mc-gray-200 text-mc-gray-600 hover:border-mc-red"
+      className={`rounded-full px-4 py-2 text-xs font-medium shadow-[0_6px_18px_-4px_rgba(0,0,0,0.25)] transition-all ${
+        selected ? "bg-mc-red text-white" : "bg-white text-mc-gray-600 hover:text-mc-red hover:shadow-[0_8px_20px_-4px_rgba(229,9,20,0.35)]"
       }`}
     >
       {label}

@@ -7,23 +7,20 @@ import { NAV_LINKS, SOCIAL_ICONS, SERVICES } from "@/lib/data";
 
 export default function Footer() {
   return (
-    <footer className="relative bg-mc-black text-white noise-bg overflow-hidden">
+    <footer className="relative bg-gray-900 text-white noise-bg overflow-hidden">
       <div className="absolute -top-40 right-0 h-96 w-96 rounded-full bg-mc-red/20 blur-[120px]" />
 
       <div className="container-mc relative pt-20 pb-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16 border-b border-white/10">
           <div className="lg:col-span-5">
-            <Link href="/" className="inline-flex items-center gap-2 mb-6">
+            <Link href="/" className="inline-flex items-center gap-2 mb-2">
   <Image 
     src="/logoLight.png" 
     alt="MetaCraze" 
     width={400} 
     height={140} 
-    className="h-10 w-auto" 
+    className="h-32 w-auto" 
   />
-  <span className="font-display text-xl font-semibold">
-    Meta<span className="text-mc-red">Craze</span>
-  </span>
 </Link>
             <p className="text-white/60 max-w-sm leading-relaxed mb-8">
               A social-first growth studio helping ambitious brands turn attention into revenue —

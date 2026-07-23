@@ -24,8 +24,7 @@ export default function MissionVision() {
             </div>
             <h3 className="font-display text-2xl font-semibold mb-4">Our Vision</h3>
             <p className="text-white/60 leading-relaxed">
-              A world where every founder can build a brand people genuinely want to follow —
-              not just advertise to, but actually welcome into their feed.
+              We help your business build a strong online presence that attracts new customers, keeps them engaged, and increases sales.
             </p>
           </div>
         </Reveal>

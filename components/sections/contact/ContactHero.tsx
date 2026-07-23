@@ -2,7 +2,7 @@ import Reveal from "@/components/ui/Reveal";
 
 export default function ContactHero() {
   return (
-    <section className="relative pt-40 pb-8 lg:pt-48 lg:pb-12 text-center overflow-hidden">
+    <section className="relative pt-18 pb-8 lg:pt-26 lg:pb-12 text-center overflow-hidden">
       <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-96 w-[800px] rounded-full bg-mc-red/10 blur-[110px]" />
       <div className="container-mc relative">
         <Reveal direction="up">

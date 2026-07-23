@@ -35,12 +35,20 @@ export default function Navbar() {
             scrolled ? "py-3" : "py-4"
           )}
         >
-          <Link href="/" className="relative flex items-center gap-2 group">
-            
-            <span className="font-display text-xl font-semibold tracking-tight">
-              Meta<span className="text-mc-red">Craze</span>
-            </span>
-          </Link>
+          
+            <Link href="/" className="relative flex items-center gap-2 group h-10">
+  <span className="relative flex items-center h-10 w-32 overflow-visible">
+    <Image 
+      src="/NEw Logo B-01.png" 
+      alt="MetaCraze" 
+      width={400} 
+      height={140} 
+      quality={100}
+      className="absolute left-0 top-1/2 -translate-y-1/2 h-700 w-auto object-contain"
+      priority 
+    />
+  </span>
+</Link>
 
           <nav className="hidden lg:flex items-center gap-1">
             {NAV_LINKS.map((link) => {

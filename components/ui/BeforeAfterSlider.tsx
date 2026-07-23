@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { MoveHorizontal } from "lucide-react";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 
 export default function BeforeAfterSlider({
   before,
@@ -17,6 +18,7 @@ export default function BeforeAfterSlider({
 }) {
   const [pos, setPos] = useState(50);
   const [width, setWidth] = useState(0);
+  const [userInteracted, setUserInteracted] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
 
@@ -29,6 +31,21 @@ export default function BeforeAfterSlider({
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
+
+  // Track scroll progress through the section (0 = entering viewport, 1 = leaving viewport)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  // Map scroll progress to a 0 -> 100 -> 0 sweep, so it slides across and back
+  const autoPos = useTransform(scrollYProgress, [0, 0.5, 1], [15, 85, 15]);
+
+  useMotionValueEvent(autoPos, "change", (latest) => {
+    if (!userInteracted) {
+      setPos(latest);
+    }
+  });
 
   const updatePos = (clientX: number) => {
     const el = containerRef.current;
@@ -44,11 +61,13 @@ export default function BeforeAfterSlider({
       className="relative aspect-[16/9] w-full rounded-3xl overflow-hidden select-none cursor-ew-resize"
       onMouseDown={(e) => {
         dragging.current = true;
+        setUserInteracted(true);
         updatePos(e.clientX);
       }}
       onMouseMove={(e) => dragging.current && updatePos(e.clientX)}
       onMouseUp={() => (dragging.current = false)}
       onMouseLeave={() => (dragging.current = false)}
+      onTouchStart={() => setUserInteracted(true)}
       onTouchMove={(e) => updatePos(e.touches[0].clientX)}
     >
       <Image src={after} alt={afterLabel} fill className="object-cover" />

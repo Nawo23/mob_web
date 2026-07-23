@@ -2,7 +2,7 @@ import Reveal from "@/components/ui/Reveal";
 
 export default function ContactMap() {
   return (
-    <section className="pb-24 lg:pb-32">
+    <section className="pb-4 lg:pb-6">
       <div className="container-mc">
         <Reveal direction="up">
           <div className="relative rounded-3xl overflow-hidden border border-mc-gray-200 aspect-[16/7]">

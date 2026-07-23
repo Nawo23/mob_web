@@ -3,7 +3,7 @@ import Reveal from "@/components/ui/Reveal";
 
 export default function AboutHero() {
   return (
-    <section className="relative pt-40 pb-16 lg:pt-48 lg:pb-20 overflow-hidden">
+    <section className="relative pt-20 pb-16 lg:pt-28 lg:pb-20 overflow-hidden">
       <div className="container-mc">
         <div className="grid lg:grid-cols-12 gap-10 items-end">
           <div className="lg:col-span-8">
