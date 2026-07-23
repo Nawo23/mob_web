@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { createPortal } from "react-dom";
 import { Check, X } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
@@ -28,11 +27,6 @@ function getBorderGradient(name: string) {
 export default function PricingPreview() {
   // now tracks the plan's id instead of its array index
   const [openPlanId, setOpenPlanId] = useState<string | null>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = openPlanId ? "hidden" : "";
@@ -249,7 +243,7 @@ export default function PricingPreview() {
         </div>
       </div>
 
-      {mounted && fullPlanModal && createPortal(fullPlanModal, document.body)}
+      {fullPlanModal}
     </section>
   );
 }
