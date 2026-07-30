@@ -2,10 +2,10 @@
 
 import { motion } from "framer-motion";
 
-export default function FloatingWhatsApp() {
+export default function FloatingWhatsApp({ whatsappNumber }: { whatsappNumber: string }) {
   return (
     <motion.a
-      href="https://wa.me/94112345678"
+      href={`https://wa.me/${whatsappNumber}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"

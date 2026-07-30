@@ -30,9 +30,9 @@ export const NAV_LINKS = [
 export const SOCIAL_ICONS = [
   { icon: Instagram, label: "Instagram", href: "#" },
   { icon: Facebook, label: "Facebook", href: "#" },
-  
+
   { icon: Linkedin, label: "LinkedIn", href: "#" },
-  
+
 ];
 
 export type Service = {
@@ -40,7 +40,7 @@ export type Service = {
   title: string;
   short: string;
   description: string;
-  icon: LucideIcon;
+  icon: LucideIcon | string;
   features: string[];
   image: string;
 };
@@ -133,7 +133,7 @@ export const SERVICES: Service[] = [
     description:
       "Gain valuable market insights, track competitors, and identify opportunities to create smarter marketing strategies and drive business growth.",
     icon: Globe,
-    features: ["Market insights","Competitor tracking","Trend analysis","Growth opportunities",],
+    features: ["Market insights", "Competitor tracking", "Trend analysis", "Growth opportunities",],
     image: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=1200&q=80",
   },
   {
@@ -143,7 +143,7 @@ export const SERVICES: Service[] = [
     description:
       "Receive detailed monthly reports with key metrics, audience insights, and performance recommendations to keep your marketing on track.",
     icon: BarChart3,
-    features: ["Monthly reports","Performance insights","Growth tracking","Actionable recommendations"],
+    features: ["Monthly reports", "Performance insights", "Growth tracking", "Actionable recommendations"],
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
   },
 ];
@@ -542,7 +542,7 @@ export const FAQS = [
 export const PRICING = [
   {
     id: "platinum",
-    name: "Platinum Package1",
+    name: "Platinum Package",
     price: "96,000 LKR",
     period: "/month",
     featured: false,
@@ -622,7 +622,7 @@ export const PRICING = [
   },
   {
     id: "silver",
-    name: "SILVER PACKAGE",
+    name: "Silver Package",
     price: "55,000 LKR",
     period: "/month",
     description: "Perfect for small businesses looking to build a professional and consistent social media presence.",
@@ -662,14 +662,34 @@ export const PRICING = [
 
 
 export const CLIENT_LOGOS = [
-  "ORBIT",
-  "LUMEN",
-  "NORTH",
-  "VERVE",
-  "HAVEN",
-  "PULSE",
-  "ATLAS",
-  "SOLACE",
+  { name: "WEGO", classname: "px-10 w-20", logo: "/logos/wego.png" },
+  { name: "WHOLEE", logo: "/logos/wholee.png" },
+  { name: "WASANAmobile", logo: "/logos/wasanamobile.png" },
+  { name: "SITHUKI", logo: "/logos/Sithuki logo.png" },
+  { name: "SIGNATURE", logo: "/logos/Signature.png" },
+  { name: "PULSE", logo: "/logos/sgsdsag.png" },
+  { name: "RONIX", logo: "/logos/Ronix_Logo.png" },
+  { name: "RICHARD", logo: "/logos/richard.png" },
+  { name: "REDROSE", logo: "/logos/Red Rose.png" },
+  { name: "RICHARD1", logo: "/logos/Poojani foreign employment logo.png" },
+  { name: "RICHARD2", logo: "/logos/OLM Enterprises Logo Final.png" },
+  { name: "RICHARD3", logo: "/logos/NEw Logo B-01.png" },
+  { name: "RICHARD4", logo: "/logos/New City tile & paints Logo Tile-02.png" },
+  { name: "RICHARD5", logo: "/logos/New city Hardware Logo (1)-01.png" },
+  { name: "RICHARD6", logo: "/logos/moonvine.png" },
+  { name: "RICHARD7", logo: "/logos/mangala.png" },
+  { name: "RICHARD8", logo: "/logos/Love Ceylon logo.png" },
+  { name: "RICHARD9", logo: "/logos/Logooo.png" },
+  { name: "RICHARD10", logo: "/logos/Logo-Photoroom.png" },
+  { name: "RICHARD11", logo: "/logos/Logo-Files-Royal-Canin-Logo.webp" },
+  { name: "RICHARD12", logo: "/logos/Logo full.png" },
+  { name: "RICHARD13", logo: "/logos/Logo Assert-02.jpg.jpeg" },
+  { name: "RICHARD14", logo: "/logos/test.png" },
+  { name: "RICHARD15", logo: "/logos/jethro.png" },
+  { name: "RICHARD16", logo: "/logos/hikvision_kurunegala.png" },
+  { name: "RICHARD17", logo: "/logos/hfahrzdh.png" },
+  { name: "RICHARD18", logo: "/logos/golden_squre.jpeg" },
+  { name: "RICHARD19", logo: "/logos/logo.png" },
 ];
 
 export const GROWTH_STATS = [

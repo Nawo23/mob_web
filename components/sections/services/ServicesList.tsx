@@ -1,8 +1,47 @@
 import Image from "next/image";
-import { ArrowUpRight, Check } from "lucide-react";
+import {
+  ArrowUpRight,
+  Check,
+  Users,
+  Instagram,
+  Video,
+  PenTool,
+  Palette,
+  Sparkles,
+  Megaphone,
+  Search,
+  Globe,
+  BarChart3,
+  type LucideIcon,
+} from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import { SERVICES } from "@/lib/data";
 import { cn } from "@/lib/utils";
+
+const ICON_MAP: Record<string, LucideIcon> = {
+  Users,
+  Instagram,
+  Video,
+  PenTool,
+  Palette,
+  Sparkles,
+  Megaphone,
+  Search,
+  Globe,
+  BarChart3,
+};
+
+function ServiceIcon({ icon }: { icon: LucideIcon | string }) {
+  if (typeof icon === "function" || (typeof icon === "object" && icon !== null)) {
+    const IconComp = icon as LucideIcon;
+    return <IconComp className="h-6 w-6 text-mc-red" />;
+  }
+  if (typeof icon === "string") {
+    const IconComp = ICON_MAP[icon] || Sparkles;
+    return <IconComp className="h-6 w-6 text-mc-red" />;
+  }
+  return <Sparkles className="h-6 w-6 text-mc-red" />;
+}
 
 export default function ServicesList() {
   return (
@@ -24,7 +63,7 @@ export default function ServicesList() {
                   <Image src={service.image} alt={service.title} fill className="object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-mc-black/40 to-transparent" />
                   <div className="absolute top-6 left-6 flex h-14 w-14 items-center justify-center rounded-2xl glass">
-                    <service.icon className="h-6 w-6 text-mc-red" />
+                    <ServiceIcon icon={service.icon} />
                   </div>
                 </div>
               </Reveal>

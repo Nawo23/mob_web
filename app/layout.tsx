@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Outfit, Inter, Poppins } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import ConditionalLayout from "@/components/ConditionalLayout";
 import Footer from "@/components/Footer";
-import SmoothScroll from "@/components/SmoothScroll";
-import PageTransition from "@/components/PageTransition";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import prisma from "@/lib/db";
+
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -48,24 +48,23 @@ export const metadata: Metadata = {
   },
 };
 
-
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
+  const contactInfo = await prisma.contactInfo.findUnique({ where: { id: "main" } });
+  const whatsappNumber = contactInfo?.whatsappNumber || "94712492183"; // fallback
+
   return (
-    <html lang="en" className={`${outfit.variable} ${inter.variable} ${poppins.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-white text-mc-black">
-        <SmoothScroll>
-          <Navbar />
-          <main className="flex-1">
-            <PageTransition>{children}</PageTransition>
-          </main>
-          <Footer />
-        </SmoothScroll>
-        <FloatingWhatsApp />
+    <html lang="en">
+      <body>
+        <ConditionalLayout
+          footer={<Footer />}
+          whatsapp={<FloatingWhatsApp whatsappNumber={whatsappNumber} />}
+        >
+          {children}
+        </ConditionalLayout>
       </body>
     </html>
   );

@@ -7,9 +7,20 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import SectionHeading from "@/components/ui/SectionHeading";
-import { TESTIMONIALS } from "@/lib/data";
 
-export default function Testimonials() {
+type TestimonialItem = {
+  id: string;
+  clientName: string;
+  clientRole: string | null;
+  company: string | null;
+  photo: string | null;
+  quote: string;
+  rating: number;
+};
+
+export default function Testimonials({ testimonials }: { testimonials: TestimonialItem[] }) {
+  if (testimonials.length === 0) return null;
+
   return (
     <section className="py-8 lg:py-12 bg-mc-gray-50 overflow-hidden">
       <div className="container-mc">
@@ -31,8 +42,8 @@ export default function Testimonials() {
             breakpoints={{ 768: { slidesPerView: 2 }, 1200: { slidesPerView: 3 } }}
             className="!pb-4"
           >
-            {TESTIMONIALS.map((t) => (
-              <SwiperSlide key={t.name} className="h-auto">
+            {testimonials.map((t) => (
+              <SwiperSlide key={t.id} className="h-auto">
                 <div className="h-full rounded-3xl bg-white border border-mc-gray-200 p-8 flex flex-col">
                   <Quote className="h-8 w-8 text-mc-red/30 mb-4" />
                   <p className="text-mc-ink leading-relaxed flex-1 mb-6">&ldquo;{t.quote}&rdquo;</p>
@@ -42,16 +53,22 @@ export default function Testimonials() {
                     ))}
                   </div>
                   <div className="flex items-center gap-3">
-                    <Image
-                      src={t.image}
-                      alt={t.name}
-                      width={44}
-                      height={44}
-                      className="rounded-full object-cover h-11 w-11"
-                    />
+                    {t.photo ? (
+                      <Image
+                        src={t.photo}
+                        alt={t.clientName}
+                        width={44}
+                        height={44}
+                        className="rounded-full object-cover h-11 w-11"
+                      />
+                    ) : (
+                      <div className="h-11 w-11 rounded-full bg-mc-gray-200" />
+                    )}
                     <div>
-                      <p className="text-sm font-semibold">{t.name}</p>
-                      <p className="text-xs text-mc-gray-600">{t.role}</p>
+                      <p className="text-sm font-semibold">{t.clientName}</p>
+                      <p className="text-xs text-mc-gray-600">
+                        {[t.clientRole, t.company].filter(Boolean).join(", ")}
+                      </p>
                     </div>
                   </div>
                 </div>

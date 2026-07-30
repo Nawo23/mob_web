@@ -6,10 +6,38 @@ import { Check, X } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import Button from "@/components/ui/Button";
-import { PRICING } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
-const PREVIEW_COUNT = 2;
+const PREVIEW_COUNT = 4;
+
+type PricingPackageItem = {
+  id: string;
+  name: string;
+  price: string;
+  description: string | null;
+  features: string[];
+  isPopular: boolean;
+};
+
+function groupFeatures(features: string[]): { title: string; items: string[] }[] {
+  const groups: { title: string; items: string[] }[] = [];
+  let current: { title: string; items: string[] } | null = null;
+
+  for (const line of features) {
+    const groupMatch = line.match(/^—\s*(.+?)\s*—$/);
+    if (groupMatch) {
+      current = { title: groupMatch[1], items: [] };
+      groups.push(current);
+    } else if (current) {
+      current.items.push(line);
+    } else {
+      current = { title: "Includes", items: [line] };
+      groups.push(current);
+    }
+  }
+
+  return groups;
+}
 
 function getBorderGradient(name: string) {
   const n = name.toLowerCase();
@@ -25,8 +53,7 @@ function getBorderGradient(name: string) {
   return "conic-gradient(from var(--angle), transparent 0%, #E50914 8%, #ff6b6b 12%, #E50914 16%, transparent 26%)";
 }
 
-export default function PricingPreview() {
-  // now tracks the plan's id instead of its array index
+export default function PricingPreview({ packages }: { packages: PricingPackageItem[] }) {
   const [openPlanId, setOpenPlanId] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
 
@@ -41,7 +68,10 @@ export default function PricingPreview() {
     };
   }, [openPlanId]);
 
-  const fullPlan = openPlanId ? PRICING.find((p) => p.id === openPlanId) ?? null : null;
+  if (packages.length === 0) return null;
+
+  const fullPlan = openPlanId ? packages.find((p) => p.id === openPlanId) ?? null : null;
+  const fullPlanGroups = fullPlan ? groupFeatures(fullPlan.features) : [];
 
   const fullPlanModal =
     fullPlan ? (
@@ -67,17 +97,18 @@ export default function PricingPreview() {
             <h3 className="font-display text-2xl font-semibold mb-1 text-mc-black">
               {fullPlan.name}
             </h3>
-            <p className="text-sm text-mc-gray-600 mb-4">{fullPlan.description}</p>
+            {fullPlan.description && (
+              <p className="text-sm text-mc-gray-600 mb-4">{fullPlan.description}</p>
+            )}
 
             <div className="mb-6">
               <span className="font-display text-3xl font-semibold text-mc-black">
                 {fullPlan.price}
               </span>
-              <span className="text-sm text-mc-gray-600">{fullPlan.period}</span>
             </div>
 
             <div className="grid sm:grid-cols-3 gap-6">
-              {fullPlan.featureGroups.map((group) => (
+              {fullPlanGroups.map((group) => (
                 <div key={group.title}>
                   <p className="text-xs font-semibold uppercase tracking-wider text-mc-gray-400 mb-3">
                     {group.title}
@@ -140,112 +171,98 @@ export default function PricingPreview() {
           className="mx-auto"
         />
 
-        <div className="grid lg:grid-cols-3 gap-6 mt-16 items-stretch relative z-[50]">
-          {PRICING.map((plan) => (
-            <Reveal key={plan.id} direction="up" delay={0.1}>
-              <div
-                className={cn(
-                  "shimmer-border isolate relative h-full rounded-3xl p-8 flex flex-col",
-                  plan.featured
-                    ? "bg-mc-black text-white shadow-2xl lg:-translate-y-4"
-                    : "bg-white border border-mc-gray-200"
-                )}
-                style={
-                  {
-                    "--shimmer-gradient": getBorderGradient(plan.name),
-                  } as React.CSSProperties
-                }
-              >
-                {plan.featured && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-mc-red px-4 py-1 text-xs font-semibold pointer-events-none">
-                    Most Popular
-                  </span>
-                )}
-                <h3 className="font-display text-xl font-semibold mb-2">{plan.name}</h3>
-                <p className={cn("text-sm mb-6", plan.featured ? "text-white/60" : "text-mc-gray-600")}>
-                  {plan.description}
-                </p>
-                <div className="mb-8">
-                  <span className="font-display text-4xl font-semibold">{plan.price}</span>
-                  <span className={cn("text-sm", plan.featured ? "text-white/50" : "text-mc-gray-600")}>
-                    {plan.period}
-                  </span>
-                </div>
+        <div className="grid lg:grid-cols-3 gap-6 mt-16 items-stretch relative z-10">
+          {packages.map((plan) => {
+            const groups = groupFeatures(plan.features);
+            const flatPreview = plan.features.filter((f) => !f.match(/^—\s*.+?\s*—$/)).slice(0, PREVIEW_COUNT);
+            const remaining = plan.features.filter((f) => !f.match(/^—\s*.+?\s*—$/)).length - PREVIEW_COUNT;
 
-                <div className="relative z-10 space-y-6 mb-8 flex-1">
-                  {plan.featureGroups.map((group) => {
-                    const preview = group.items.slice(0, PREVIEW_COUNT);
-                    const remaining = group.items.length - PREVIEW_COUNT;
+            return (
+              <Reveal key={plan.id} direction="up" delay={0.1}>
+                <div
+                  className={cn(
+                    "shimmer-border isolate relative h-full rounded-3xl p-8 flex flex-col",
+                    plan.isPopular
+                      ? "bg-mc-black text-white shadow-2xl lg:-translate-y-4"
+                      : "bg-white border border-mc-gray-200"
+                  )}
+                  style={
+                    {
+                      "--shimmer-gradient": getBorderGradient(plan.name),
+                    } as React.CSSProperties
+                  }
+                >
+                  {plan.isPopular && (
+                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-mc-red px-4 py-1 text-xs font-semibold pointer-events-none">
+                      Most Popular
+                    </span>
+                  )}
+                  <h3 className="font-display text-xl font-semibold mb-2">{plan.name}</h3>
+                  {plan.description && (
+                    <p className={cn("text-sm mb-6", plan.isPopular ? "text-white/60" : "text-mc-gray-600")}>
+                      {plan.description}
+                    </p>
+                  )}
+                  <div className="mb-8">
+                    <span className="font-display text-4xl font-semibold">{plan.price}</span>
+                  </div>
 
-                    return (
-                      <div key={group.title}>
-                        <p
-                          className={cn(
-                            "text-xs font-semibold uppercase tracking-wider mb-3",
-                            plan.featured ? "text-white/50" : "text-mc-gray-400"
-                          )}
-                        >
-                          {group.title}
-                        </p>
-                        <ul className="space-y-3">
-                          {preview.map((f) => (
-                            <li key={f} className="flex items-start gap-2.5 text-sm">
-                              <Check
-                                className={cn(
-                                  "h-4 w-4 mt-0.5 shrink-0",
-                                  plan.featured ? "text-mc-red-glow" : "text-mc-red"
-                                )}
-                              />
-                              <span className={plan.featured ? "text-white/80" : "text-mc-ink"}>
-                                {f}
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-
-                        {remaining > 0 && (
-                          <button
-                            type="button"
-                            onClick={() => setOpenPlanId(plan.id)}
+                  <div className="relative z-10 space-y-3 mb-8 flex-1">
+                    <ul className="space-y-3">
+                      {flatPreview.map((f) => (
+                        <li key={f} className="flex items-start gap-2.5 text-sm">
+                          <Check
                             className={cn(
-                              "relative z-20 mt-2 text-xs font-semibold underline underline-offset-2 transition-colors cursor-pointer",
-                              plan.featured
-                                ? "text-white/60 hover:text-white"
-                                : "text-mc-gray-500 hover:text-mc-red"
+                              "h-4 w-4 mt-0.5 shrink-0",
+                              plan.isPopular ? "text-mc-red-glow" : "text-mc-red"
                             )}
-                          >
-                            View more...
-                          </button>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
+                          />
+                          <span className={plan.isPopular ? "text-white/80" : "text-mc-ink"}>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
 
-                <div className="relative z-20 flex gap-3">
-                  <button
-                    type="button"
-                    onClick={() => setOpenPlanId(plan.id)}
-                    className={cn(
-                      "shrink-0 rounded-full px-5 py-3 text-sm font-semibold border transition-colors cursor-pointer",
-                      plan.featured
-                        ? "border-white/25 text-white/80 hover:bg-white/10"
-                        : "border-mc-gray-200 text-mc-gray-600 hover:border-mc-gray-300 hover:text-mc-black"
+                    {remaining > 0 && (
+                      <button
+                        type="button"
+                        onClick={() => setOpenPlanId(plan.id)}
+                        className={cn(
+                          "relative z-20 mt-2 text-xs font-semibold underline underline-offset-2 transition-colors cursor-pointer",
+                          plan.isPopular
+                            ? "text-white/60 hover:text-white"
+                            : "text-mc-gray-500 hover:text-mc-red"
+                        )}
+                      >
+                        View more...
+                      </button>
                     )}
-                  >
-                    Details
-                  </button>
-                  <Button
-                    href="/contact"
-                    variant={plan.featured ? "primary" : "outline"}
-                    className="flex-1"
-                  >
-                    Get Started
-                  </Button>
+                  </div>
+
+                  <div className="relative z-20 flex gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setOpenPlanId(plan.id)}
+                      className={cn(
+                        "shrink-0 rounded-full px-5 py-3 text-sm font-semibold border transition-colors cursor-pointer",
+                        plan.isPopular
+                          ? "border-white/25 text-white/80 hover:bg-white/10"
+                          : "border-mc-gray-200 text-mc-gray-600 hover:border-mc-gray-300 hover:text-mc-black"
+                      )}
+                    >
+                      Details
+                    </button>
+                    <Button
+                      href="/contact"
+                      variant={plan.isPopular ? "primary" : "outline"}
+                      className="flex-1"
+                    >
+                      Get Started
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            );
+          })}
         </div>
       </div>
 

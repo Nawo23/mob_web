@@ -5,14 +5,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { PROJECTS } from "@/lib/data";
 import Reveal from "@/components/ui/Reveal";
+import type { Project } from "@/lib/project-adapter";
 
 const CATEGORIES = ["All", "Social Growth", "Paid Media", "Branding", "Content", "Web"] as const;
 
-export default function ProjectsGrid() {
+export default function ProjectsGrid({ projects }: { projects: Project[] }) {
   const [active, setActive] = useState<(typeof CATEGORIES)[number]>("All");
-  const filtered = active === "All" ? PROJECTS : PROJECTS.filter((p) => p.category === active);
+  const filtered = active === "All" ? projects : projects.filter((p) => p.category === active);
 
   return (
     <section className="py-10 lg:py-12">
@@ -22,9 +22,8 @@ export default function ProjectsGrid() {
             <button
               key={cat}
               onClick={() => setActive(cat)}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                active === cat ? "bg-mc-red text-white" : "bg-mc-gray-100 text-mc-gray-600 hover:bg-mc-gray-200"
-              }`}
+              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${active === cat ? "bg-mc-red text-white" : "bg-mc-gray-100 text-mc-gray-600 hover:bg-mc-gray-200"
+                }`}
             >
               {cat}
             </button>

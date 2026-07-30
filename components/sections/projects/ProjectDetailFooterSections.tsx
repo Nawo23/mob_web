@@ -2,13 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { Quote, ArrowUpRight } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
-import { PROJECTS, type Project } from "@/lib/data";
+import type { Project } from "@/lib/project-adapter";
 
-export default function ProjectDetailFooterSections({ project }: { project: Project }) {
-  const related = PROJECTS.filter((p) => p.slug !== project.slug && p.category === project.category).slice(0, 3);
-  const fallback = PROJECTS.filter((p) => p.slug !== project.slug).slice(0, 3);
-  const relatedProjects = related.length > 0 ? related : fallback;
-
+export default function ProjectDetailFooterSections({
+  project,
+  relatedProjects,
+}: {
+  project: Project;
+  relatedProjects: Project[];
+}) {
   return (
     <>
       <section className="py-8 lg:py-12">

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import prisma from "@/lib/db";
 import ContactHero from "@/components/sections/contact/ContactHero";
 import ContactForm from "@/components/sections/contact/ContactForm";
 import ContactInfo from "@/components/sections/contact/ContactInfo";
@@ -11,11 +12,13 @@ export const metadata: Metadata = {
     "Get in touch with MetaCraze to book a free consultation. Office address, phone, email and a direct contact form.",
 };
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const contactInfo = await prisma.contactInfo.findUnique({ where: { id: "main" } });
+
   return (
     <>
       <ContactHero />
-      <ContactInfo />
+      <ContactInfo info={contactInfo} />
       <ContactForm />
       <ContactMap />
       <FAQSection />

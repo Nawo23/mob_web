@@ -2,7 +2,7 @@ import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import Stat from "@/components/ui/Stat";
-import type { Project } from "@/lib/data";
+import type { Project } from "@/lib/project-adapter";
 
 function parseStatValue(raw: string): { value: number; prefix: string; suffix: string; decimals: number } {
   const match = raw.match(/^([^0-9.]*)([0-9.,]+)(.*)$/);

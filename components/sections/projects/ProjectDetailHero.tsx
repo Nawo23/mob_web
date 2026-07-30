@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
-import type { Project } from "@/lib/data";
+import type { Project } from "@/lib/project-adapter";
+
 
 export default function ProjectDetailHero({ project }: { project: Project }) {
   return (

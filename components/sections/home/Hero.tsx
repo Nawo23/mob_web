@@ -74,7 +74,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       onPointerMove={handlePointerMove}
-      className="relative min-h-screen flex flex-col justify-center pt-8 pb-14 sm:pt-10 sm:pb-20 lg:pt-12 lg:pb-24 overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center pt-24 pb-14 sm:pt-10 sm:pb-20 lg:pt-12 lg:pb-24 overflow-x-hidden"
     >
       {/* Ambient aurora + spotlight background */}
       <div className="pointer-events-none absolute inset-0 -z-10">

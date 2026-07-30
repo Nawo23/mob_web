@@ -1,0 +1,178 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String   // hashed password
+  role      Role     @default(ADMIN)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  category    String
+  client      String?
+  result      String?  // one-line summary shown on the grid card
+  description String   // overview (detail page intro paragraph)
+  coverImage  String
+  images      String[] // gallery
+  videoUrl    String?
+  tags        String[] // servicesUsed
+  featured    Boolean  @default(false)
+  order       Int      @default(0)
+
+  metricLabel String?
+  metricValue String?
+  year        String?
+  duration    String?
+  challenge   String?
+  solution    String?
+  results     Json?    // [{ "label": "...", "value": "..." }]
+
+  testimonialQuote String?
+  testimonialName  String?
+  testimonialRole  String?
+  testimonialImage String?
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  short       String?
+  description String
+  icon        String?
+  image       String?
+  features    String[]
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model TeamMember {
+  id        String   @id @default(cuid())
+  name      String
+  role      String
+  photo     String?
+  bio       String?
+  linkedin  String?
+  instagram String?
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Testimonial {
+  id          String   @id @default(cuid())
+  clientName  String
+  clientRole  String?
+  company     String?
+  photo       String?
+  quote       String
+  rating      Int      @default(5)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model PricingPackage {
+  id          String   @id @default(cuid())
+  name        String
+  price       String   // "Rs. 15,000" wage string widihata thiyaganna elesama e nisa "starting from" wage text ekath dala puluwan
+  description String?
+  features    String[] // list of feature strings
+  isPopular   Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  message   String
+  status    String   @default("new") // new / read / replied
+  createdAt DateTime @default(now())
+}
+
+model ClientLogo {
+  id        String   @id @default(cuid())
+  name      String
+  logoUrl   String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model SiteSettings {
+  id            String   @id @default("main")
+  heroVideoUrl  String?
+  heroImageUrl  String?
+  updatedAt     DateTime @updatedAt
+}
+
+model CompanyStat {
+  id          String   @id @default(cuid())
+  type        String   @default("stat") // "stat" | "vision_mission"
+  label       String   // stat: "Years in Business" | vision_mission: "Our Mission"
+  value       Int?     // stat walata witharai (e.g. 8)
+  description String?  // vision_mission walata witharai (long text)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ContactInfo {
+  id            String   @id @default("main")
+  address       String?
+  email         String?
+  phone         String?
+  whatsappNumber String?
+  workingHours  String?
+  mapEmbedUrl   String?
+  updatedAt     DateTime @updatedAt
+}
+
+model FooterSettings {
+  id              String   @id @default("main")
+  description     String?
+  logoUrl         String?
+  backgroundImage String?
+  copyrightText   String?
+  updatedAt       DateTime @updatedAt
+}
+
+model SocialLink {
+  id        String   @id @default(cuid())
+  platform  String   // "Instagram", "Facebook", "LinkedIn", "TikTok", etc.
+  url       String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+}
