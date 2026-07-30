@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X, ArrowUpRight, LogIn } from "lucide-react";
 import { NAV_LINKS } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -35,20 +35,19 @@ export default function Navbar() {
             scrolled ? "py-3" : "py-4"
           )}
         >
-          
-            <Link href="/" className="relative flex items-center gap-2 group h-10">
-  <span className="relative flex items-center h-10 w-32 overflow-visible">
-    <Image 
-      src="/NEw Logo B-01.png" 
-      alt="MetaCraze" 
-      width={400} 
-      height={140} 
-      quality={100}
-      className="absolute left-0 top-1/2 -translate-y-1/2 h-700 w-auto object-contain pointer-events-none"
-      priority 
-    />
-  </span>
-</Link>
+          <Link href="/" className="relative flex items-center gap-2 group h-10">
+            <span className="relative flex items-center h-10 w-32 overflow-visible">
+              <Image
+                src="/NEw Logo B-01.png"
+                alt="MetaCraze"
+                width={400}
+                height={140}
+                quality={100}
+                className="absolute left-0 top-1/2 -translate-y-1/2 h-700 w-auto object-contain pointer-events-none"
+                priority
+              />
+            </span>
+          </Link>
 
           <nav className="hidden lg:flex items-center gap-1">
             {NAV_LINKS.map((link) => {
@@ -75,7 +74,14 @@ export default function Navbar() {
             })}
           </nav>
 
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center gap-3">
+            <Link
+              href="/admin/login"
+              className="inline-flex items-center gap-1.5 rounded-full border border-mc-gray-200 px-4 py-2.5 text-sm font-medium text-mc-ink transition-colors hover:border-mc-red hover:text-mc-red"
+            >
+              <LogIn className="h-3.5 w-3.5" />
+              Login
+            </Link>
             <Link
               href="/contact"
               className="group inline-flex items-center gap-1.5 rounded-full bg-mc-red px-5 py-2.5 text-sm font-semibold text-white transition-transform hover:scale-[1.03] active:scale-95"
@@ -120,9 +126,17 @@ export default function Navbar() {
                   </Link>
                 ))}
                 <Link
+                  href="/admin/login"
+                  onClick={() => setOpen(false)}
+                  className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-full border border-mc-gray-200 px-5 py-3 text-sm font-medium text-mc-ink"
+                >
+                  <LogIn className="h-4 w-4" />
+                  Login
+                </Link>
+                <Link
                   href="/contact"
                   onClick={() => setOpen(false)}
-                  className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-full bg-mc-red px-5 py-3 text-sm font-semibold text-white"
+                  className="mt-1 inline-flex items-center justify-center gap-1.5 rounded-full bg-mc-red px-5 py-3 text-sm font-semibold text-white"
                 >
                   Book Consultation
                   <ArrowUpRight className="h-4 w-4" />
