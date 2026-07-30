@@ -197,6 +197,7 @@ export default function PricingPreview({ packages }: { packages: PricingPackageI
                   </p>
                   <div className="mb-8">
                     <span className="font-display text-4xl font-semibold">{plan.price}</span>
+
                   </div>
 
                   <div className="relative z-10 space-y-3 mb-8 flex-1">

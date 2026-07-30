@@ -22,6 +22,7 @@ const LINKS = [
   { href: "/admin/pricing", label: "Pricing", icon: Tag },
   { href: "/admin/leads", label: "Leads  ", icon: Inbox },
   { href: "/admin/settings", label: "Settings", icon: Settings },
+  { href: "/admin/settings", label: "Settings", icon: Settings }
 ];
 
 export default function AdminNav() {
@@ -56,17 +57,15 @@ export default function AdminNav() {
             <Link
               key={link.href}
               href={link.href}
-              className={`flex items-center gap-2 whitespace-nowrap rounded-lg px-2.5 py-2 text-[13px] font-medium transition-colors ${
-                active ? "bg-mc-red text-white" : "text-mc-gray-600 hover:bg-mc-gray-100"
-              }`}
+              className={`flex items-center gap-2 whitespace-nowrap rounded-lg px-2.5 py-2 text-[13px] font-medium transition-colors ${active ? "bg-mc-red text-white" : "text-mc-gray-600 hover:bg-mc-gray-100"
+                }`}
             >
               <Icon className="h-4 w-4 shrink-0" />
               {link.label}
               {link.href === "/admin/leads" && !!newLeads && (
                 <span
-                  className={`ml-auto rounded-full px-1.5 py-0.5 text-[11px] leading-none ${
-                    active ? "bg-white/20 text-white" : "bg-red-100 text-mc-red"
-                  }`}
+                  className={`ml-auto rounded-full px-1.5 py-0.5 text-[11px] leading-none ${active ? "bg-white/20 text-white" : "bg-red-100 text-mc-red"
+                    }`}
                 >
                   {newLeads}
                 </span>
