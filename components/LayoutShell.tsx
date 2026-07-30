@@ -7,7 +7,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import PageTransition from "@/components/PageTransition";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
-export default function LayoutShell({ children }: { children: React.ReactNode }) {
+export default function LayoutShell({ children, whatsappNumber }: { children: React.ReactNode; whatsappNumber?: string }) {
     const pathname = usePathname();
     const isAdmin = pathname?.startsWith("/admin");
 
@@ -24,7 +24,7 @@ export default function LayoutShell({ children }: { children: React.ReactNode })
                 </main>
                 <Footer />
             </SmoothScroll>
-            <FloatingWhatsApp />
+            <FloatingWhatsApp whatsappNumber={whatsappNumber} />
         </>
     );
 }

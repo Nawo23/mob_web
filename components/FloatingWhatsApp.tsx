@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-export default function FloatingWhatsApp({ whatsappNumber }: { whatsappNumber: string }) {
+export default function FloatingWhatsApp({ whatsappNumber = "94712492183" }: { whatsappNumber?: string }) {
   return (
     <motion.a
       href={`https://wa.me/${whatsappNumber}`}

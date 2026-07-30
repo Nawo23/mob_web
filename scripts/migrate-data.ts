@@ -11,8 +11,12 @@ async function main() {
         await prisma.service.create({
             data: {
                 title: s.title,
+                slug: s.slug,
+                short: s.short,
                 description: s.description,
-                icon: null,
+                icon: typeof s.icon === "string" ? s.icon : null,
+                image: s.image,
+                features: s.features,
                 order: i,
             },
         });

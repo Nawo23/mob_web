@@ -24,6 +24,6 @@ export function canEdit(role: string): boolean {
     return role === "SUPER_ADMIN" || role === "ADMIN";
 }
 
-export function getDefaultRoute(): string {
+export function getDefaultRoute(role?: string): string {
     return "/admin";
 }
