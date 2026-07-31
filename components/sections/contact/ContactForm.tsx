@@ -74,7 +74,7 @@ export default function ContactForm() {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ type: "spring", stiffness: 300, damping: 18 }}
-              className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-mc-red/10"
+              className="mx-auto max-w-3xl rounded-3xl bg-white shadow-[0_20px_60px_-12px_rgba(0,0,0,0.18)] p-10 text-center"
             >
               <CheckCircle2 className="h-8 w-8 text-mc-red" />
             </motion.div>
@@ -155,7 +155,7 @@ export default function ContactForm() {
               placeholder="What are you looking to grow, and by when?"
               value={form.message}
               onChange={handleChange}
-              className="w-full rounded-2xl bg-white shadow-[0_8px_25px_-6px_rgba(0,0,0,0.2)] px-4 py-3.5 text-sm outline-none focus:ring-2 focus:ring-mc-red/30 transition-shadow resize-none"
+              className="w-full rounded-2xl bg-white shadow-[0_4px_16px_-5px_rgba(0,0,0,0.14)] px-4 py-3.5 text-sm outline-none focus:ring-2 focus:ring-mc-red/30 transition-shadow resize-none"
             />
           </div>
 
@@ -203,7 +203,7 @@ function Field({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className="w-full rounded-2xl bg-white shadow-[0_8px_25px_-6px_rgba(0,0,0,0.2)] px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-mc-red/30 transition-shadow"
+        className="w-full rounded-2xl bg-white shadow-[0_3px_12px_-4px_rgba(0,0,0,0.2)] px-4 py-3.5 text-sm outline-none focus:ring-2 focus:ring-mc-red/30 transition-shadow resize-none"
       />
     </div>
   );
@@ -222,7 +222,7 @@ function BudgetPill({
     <button
       type="button"
       onClick={onClick}
-      className={`rounded-full px-4 py-2 text-xs font-medium shadow-[0_6px_18px_-4px_rgba(0,0,0,0.25)] transition-all ${selected ? "bg-mc-red text-white" : "bg-white text-mc-gray-600 hover:text-mc-red hover:shadow-[0_8px_20px_-4px_rgba(229,9,20,0.35)]"
+      className={`rounded-full px-4 py-2 text-xs font-medium shadow-[0_2px_8px_-3px_rgba(0,0,0,0.15)] transition-all ${selected ? "bg-mc-red text-white" : "bg-white text-mc-gray-600 hover:text-mc-red hover:shadow-[0_4px_12px_-3px_rgba(229,9,20,0.25)]"
         }`}
     >
       {label}

@@ -1,37 +1,23 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowUpRight, Sparkles } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-export type ServiceItem = {
+type ServiceItem = {
   id: string;
-  slug: string | null;
+  slug: string;
   title: string;
   short: string | null;
   icon: string | null;
 };
 
 export default function Services({ services }: { services: ServiceItem[] }) {
-  const sectionRef = useRef(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-
-  const rightY = useTransform(scrollYProgress, [0, 1], ["18%", "-18%"]);
-  const leftY = useTransform(scrollYProgress, [0, 1], ["-18%", "18%"]);
-
   if (services.length === 0) return null;
 
   return (
-    <section
-      ref={sectionRef}
-      className="py-10 lg:py-18 relative overflow-hidden"
-    >
+    <section className="py-10 lg:py-18 relative overflow-hidden">
       <div className="pointer-events-none absolute top-0 right-0 h-[500px] w-[500px] rounded-full bg-mc-red/[0.03] blur-[120px] -z-10" />
 
       <div className="container-mc">
@@ -70,83 +56,55 @@ export default function Services({ services }: { services: ServiceItem[] }) {
           </Link>
         </div>
 
-        <div className="grid lg:grid-cols-[1fr_2.2fr_1fr] gap-8 lg:gap-10 items-start">
-          <motion.div
-            style={{ y: leftY }}
-            className="hidden lg:block relative h-[560px] rounded-3xl overflow-hidden shadow-[0_2px_16px_-4px_rgba(0,0,0,0.06)]"
-          >
-            <Image
-              src="/images/left side.jpg"
-              alt=""
-              fill
-              sizes="(min-width: 1024px) 20vw, 0vw"
-              className="object-cover"
-            />
-          </motion.div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, i) => (
+            <motion.div
+              key={service.id}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: i * 0.06, ease: "easeOut" }}
+              whileHover={{ y: -8 }}
+              className="group relative h-full rounded-2xl bg-white p-7 overflow-hidden border border-mc-gray-200 shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:border-mc-red/30 hover:shadow-[0_24px_48px_-16px_rgba(229,9,20,0.18)] transition-all duration-500"
+            >
+              <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-mc-red/0 group-hover:bg-mc-red/10 transition-colors duration-500 blur-3xl" />
 
-          <div className="grid sm:grid-cols-2 gap-4">
-            {services.map((service, i) => (
+              <span className="absolute top-5 right-6 font-display text-3xl font-bold text-mc-gray-100 select-none">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+
               <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.5, delay: i * 0.06, ease: "easeOut" }}
-                whileHover={{ y: -6 }}
-                className="group relative h-full rounded-2xl bg-white p-5 overflow-hidden shadow-[0_2px_16px_-4px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_50px_-12px_rgba(229,9,20,0.15)] transition-shadow duration-500"
+                whileHover={{ rotate: 6, scale: 1.08 }}
+                transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-mc-black to-mc-black/80 text-white mb-5 group-hover:from-mc-red group-hover:to-mc-red/80 transition-colors duration-300 shadow-lg overflow-hidden"
               >
-                <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-mc-red/0 group-hover:bg-mc-red/10 transition-colors duration-500 blur-3xl" />
-
-                <span className="absolute top-4 right-5 font-display text-2xl font-bold text-mc-gray-100 select-none">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-
-                <motion.div
-                  whileHover={{ rotate: 6, scale: 1.08 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                  className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-mc-black to-mc-black/80 text-white mb-4 group-hover:from-mc-red group-hover:to-mc-red/80 transition-colors duration-300 shadow-lg overflow-hidden"
-                >
-                  {service.icon ? (
-                    <Image src={service.icon} alt="" fill className="object-cover" />
-                  ) : (
-                    <Sparkles className="h-4.5 w-4.5" />
-                  )}
-                </motion.div>
-
-                <h3 className="relative font-display text-base font-semibold mb-1.5 tracking-tight">
-                  {service.title}
-                </h3>
-                {service.short && (
-                  <p className="relative text-xs text-mc-gray-600 leading-relaxed mb-4">
-                    {service.short}
-                  </p>
+                {service.icon ? (
+                  <Image src={service.icon} alt="" fill className="object-cover" />
+                ) : (
+                  <Sparkles className="h-5 w-5" />
                 )}
-
-                <Link
-                  href="/services"
-                  className="relative inline-flex items-center gap-1.5 text-xs font-semibold text-mc-black group-hover:text-mc-red transition-colors"
-                >
-                  Learn More
-                  <ArrowUpRight className="h-3 w-3 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                </Link>
-
-                <span className="absolute bottom-0 left-0 h-1 w-0 bg-mc-red group-hover:w-full transition-all duration-500 rounded-full" />
               </motion.div>
-            ))}
-          </div>
 
-          <motion.div
-            style={{ y: rightY }}
-            className="hidden lg:block relative h-[560px] rounded-3xl overflow-hidden shadow-[0_2px_16px_-4px_rgba(0,0,0,0.06)]"
-          >
-            <Image
-              src="/images/rightside.webp"
-              alt=""
-              fill
-              sizes="(min-width: 1024px) 20vw, 0vw"
-              className="object-cover"
-            />
-          </motion.div>
+              <h3 className="relative font-display text-lg font-semibold mb-2 tracking-tight">
+                {service.title}
+              </h3>
+              {service.short && (
+                <p className="relative text-sm text-mc-gray-600 leading-relaxed mb-5">
+                  {service.short}
+                </p>
+              )}
+
+              <Link
+                href="/services"
+                className="relative inline-flex items-center gap-1.5 text-sm font-semibold text-mc-black group-hover:text-mc-red transition-colors"
+              >
+                Learn More
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </Link>
+
+              <span className="absolute bottom-0 left-0 h-1 w-0 bg-mc-red group-hover:w-full transition-all duration-500 rounded-full" />
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

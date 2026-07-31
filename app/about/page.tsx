@@ -25,11 +25,13 @@ export default async function AboutPage() {
     orderBy: { order: "asc" },
   });
 
+  const timelineItems = await prisma.timelineItem.findMany({ orderBy: { order: "asc" } });
+
   return (
     <>
       <AboutHero />
       <MissionVision items={missionVision} />
-      <Timeline />
+      <Timeline items={timelineItems} />
       <Achievements stats={companyStats} />
       <TeamGrid members={teamMembers} />
       <CreativeCulture />

@@ -7,6 +7,7 @@ type LogoItem = {
   id: string;
   name: string;
   logoUrl: string;
+  size: number;
 };
 
 export default function TrustedBy({ logos }: { logos: LogoItem[] }) {
@@ -23,16 +24,26 @@ export default function TrustedBy({ logos }: { logos: LogoItem[] }) {
       </div>
 
       <Marquee speed={50}>
-        {logos.map((c) => (
-          <div key={c.id} className="px-10">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={c.logoUrl}
-              alt={c.name}
-              className="h-20 w-20 object-contain"
-            />
-          </div>
-        ))}
+        {logos.map((c) => {
+          const baseSize = 80;
+          const scaledSize = (baseSize * c.size) / 100;
+
+          return (
+            <div
+              key={c.id}
+              className="px-10 flex items-center justify-center shrink-0"
+              style={{ minWidth: `${scaledSize}px` }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={c.logoUrl}
+                alt={c.name}
+                style={{ height: `${scaledSize}px`, width: `${scaledSize}px` }}
+                className="object-contain"
+              />
+            </div>
+          );
+        })}
       </Marquee>
     </section>
   );

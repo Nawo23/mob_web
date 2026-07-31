@@ -6,6 +6,7 @@ import { revalidatePath } from "next/cache";
 
 export async function createLogo(formData: FormData) {
     const name = formData.get("name") as string;
+    const size = Number(formData.get("size")) || 100;
     const logoFile = formData.get("logo") as File;
 
     if (!logoFile || logoFile.size === 0) throw new Error("Logo image is required");
@@ -14,7 +15,7 @@ export async function createLogo(formData: FormData) {
     const count = await prisma.clientLogo.count();
 
     await prisma.clientLogo.create({
-        data: { name, logoUrl, order: count },
+        data: { name, logoUrl, size, order: count },
     });
 
     revalidatePath("/admin/logos");
@@ -31,6 +32,7 @@ export async function deleteLogo(id: string) {
 
 export async function updateLogo(id: string, formData: FormData) {
     const name = formData.get("name") as string;
+    const size = Number(formData.get("size")) || 100;
     const logoFile = formData.get("logo") as File;
 
     const existing = await prisma.clientLogo.findUnique({ where: { id } });
@@ -44,7 +46,7 @@ export async function updateLogo(id: string, formData: FormData) {
 
     await prisma.clientLogo.update({
         where: { id },
-        data: { name, logoUrl },
+        data: { name, logoUrl, size },
     });
 
     revalidatePath("/admin/logos");

@@ -15,6 +15,8 @@ const NAV_ITEMS: { href: string; label: string; icon: string; section: Section }
     { href: "/admin/testimonials", label: "Testimonials", section: "testimonials", icon: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.86 9.86 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" },
     { href: "/admin/stats", label: "About", section: "stats", icon: "M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
     { href: "/admin/footer", label: "Footer", section: "footer", icon: "M4 6h16M4 12h16M4 18h7" },
+    { href: "/admin/pricing", label: "Pricing", section: "pricing", icon: "M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" },
+    { href: "/admin/timeline", label: "Our Journey", section: "timeline", icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" },
     { href: "/admin/contact-info", label: "Contact Info", section: "contact", icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z" },
     { href: "/admin/messages", label: "Messages", section: "messages", icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" },
     { href: "/admin/users", label: "Staff & Admins", section: "users", icon: "M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m6-2.13a4 4 0 10-4-4 4 4 0 004 4zm6 0a4 4 0 10-4-4" },

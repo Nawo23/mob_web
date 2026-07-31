@@ -10,6 +10,7 @@ export type Section =
     | "messages"
     | "stats"
     | "contact"
+    | "timeline"
     | "footer"
     | "users";
 

@@ -127,6 +127,7 @@ model ClientLogo {
   id        String   @id @default(cuid())
   name      String
   logoUrl   String
+  size      Int      @default(100)
   order     Int      @default(0)
   createdAt DateTime @default(now())
 }
@@ -175,4 +176,14 @@ model SocialLink {
   url       String
   order     Int      @default(0)
   createdAt DateTime @default(now())
+}
+
+model TimelineItem {
+  id        String   @id @default(cuid())
+  year      String
+  title     String
+  text      String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

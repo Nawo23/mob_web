@@ -11,6 +11,7 @@ type LogoItem = {
     id: string;
     name: string;
     logoUrl: string;
+    size: number;
 };
 
 export default function LogosManager({ logos }: { logos: LogoItem[] }) {
@@ -63,6 +64,19 @@ export default function LogosManager({ logos }: { logos: LogoItem[] }) {
                         className="w-full px-4 py-2.5 rounded-lg border border-black/10 focus:outline-none focus:ring-2 focus:ring-[#FF1F3D] font-[var(--font-inter)]"
                     />
                 </div>
+                <div className="w-28">
+                    <label className="block font-[var(--font-inter)] text-sm font-medium text-[#0A0A0A] mb-1.5">
+                        Size (%)
+                    </label>
+                    <input
+                        type="number"
+                        name="size"
+                        defaultValue={100}
+                        min={30}
+                        max={300}
+                        className="w-full px-4 py-2.5 rounded-lg border border-black/10 focus:outline-none focus:ring-2 focus:ring-[#FF1F3D] font-[var(--font-inter)]"
+                    />
+                </div>
                 <div className="flex-1">
                     <label className="block font-[var(--font-inter)] text-sm font-medium text-[#0A0A0A] mb-1.5">
                         Logo Image
@@ -90,6 +104,7 @@ export default function LogosManager({ logos }: { logos: LogoItem[] }) {
                                 <Image src={logo.logoUrl} alt={logo.name} fill className="object-contain" />
                             </div>
                             <p className="font-[var(--font-inter)] text-xs text-[#0A0A0A]/50 mt-2 truncate">{logo.name}</p>
+                            <p className="font-[var(--font-inter)] text-[10px] text-[#0A0A0A]/30">{logo.size}%</p>
 
                             <div className="flex items-center gap-2 mt-3">
                                 <button
@@ -111,11 +126,7 @@ export default function LogosManager({ logos }: { logos: LogoItem[] }) {
                 </div>
             )}
 
-            <Modal
-                isOpen={editModalOpen}
-                onClose={() => setEditModalOpen(false)}
-                title="Edit Logo"
-            >
+            <Modal isOpen={editModalOpen} onClose={() => setEditModalOpen(false)} title="Edit Logo">
                 {editingLogo && (
                     <form
                         action={async (formData) => {
@@ -143,6 +154,20 @@ export default function LogosManager({ logos }: { logos: LogoItem[] }) {
                                 name="name"
                                 defaultValue={editingLogo.name}
                                 required
+                                className="w-full px-4 py-2.5 rounded-lg border border-black/10 focus:outline-none focus:ring-2 focus:ring-[#FF1F3D] font-[var(--font-inter)]"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block font-[var(--font-inter)] text-sm font-medium text-[#0A0A0A] mb-1.5">
+                                Size (%) — 100 = default, 200 = 2x bigger, 50 = half size
+                            </label>
+                            <input
+                                type="number"
+                                name="size"
+                                defaultValue={editingLogo.size}
+                                min={30}
+                                max={300}
                                 className="w-full px-4 py-2.5 rounded-lg border border-black/10 focus:outline-none focus:ring-2 focus:ring-[#FF1F3D] font-[var(--font-inter)]"
                             />
                         </div>
