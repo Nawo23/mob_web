@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import prisma from "@/lib/db";
 import AdminShell from "@/components/admin/AdminShell";
 import { getCurrentAdmin } from "@/lib/auth";
